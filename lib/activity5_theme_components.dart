@@ -10,12 +10,14 @@ void main() {
 // 1. The app is Stateful because the dark-mode switch changes the theme
 class ThemeDemoApp extends StatefulWidget {
   const ThemeDemoApp({super.key});
+
   @override
   State<ThemeDemoApp> createState() => _ThemeDemoAppState();
 }
 
 class _ThemeDemoAppState extends State<ThemeDemoApp> {
   bool _isDark = false;
+
   void _setDark(bool value) {
     setState(() {
       _isDark = value;
@@ -44,6 +46,7 @@ ThemeData buildTheme(Brightness brightness) {
     textTheme: const TextTheme(
       headlineSmall: TextStyle(fontWeight: FontWeight.bold),
     ),
+
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -60,8 +63,10 @@ class SettingsPage extends StatelessWidget {
     required this.isDark,
     required this.onDarkChanged,
   });
+
   final bool isDark;
   final ValueChanged<bool> onDarkChanged;
+
   void _showMessage(BuildContext context, String text) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
   }
@@ -88,6 +93,7 @@ class SettingsPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
+
           // 5. A switch that changes the theme of the whole app
           Card(
             child: SwitchListTile(
@@ -111,20 +117,23 @@ class SettingsPage extends StatelessWidget {
               Chip(avatar: Icon(Icons.storage), label: Text('MySQL')),
               Chip(avatar: Icon(Icons.terminal), label: Text('Python')),
               Chip(avatar: Icon(Icons.source), label: Text('Git')),
+              Chip(avatar: Icon(Icons.coffee), label: Text('Java')),
             ],
           ),
           const SizedBox(height: 24),
-          // 7. Three button types, styled by the theme above
 
+          // 7. Three button types, styled by the theme above
           ElevatedButton(
             onPressed: () => _showMessage(context, 'Elevated button pressed'),
             child: const Text('Elevated'),
           ),
+
           const SizedBox(height: 8),
           OutlinedButton(
             onPressed: () => _showMessage(context, 'Outlined button pressed'),
             child: const Text('Outlined'),
           ),
+
           const SizedBox(height: 8),
           FilledButton.icon(
             onPressed: () => _showMessage(context, 'Saved!'),
